@@ -8,3 +8,7 @@
 # True
 # Enter a word: Python
 # False
+
+w = input("Enter a word: ").lower()
+
+print(w == w[::-1])
