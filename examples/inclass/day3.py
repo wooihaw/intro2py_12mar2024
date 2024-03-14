@@ -143,6 +143,130 @@ print(f"{p2 = }")
 p3 = list(filter(lambda w: w == w[::-1], words))
 print(f"{p3 = }")
 
+#%% Use list and functions to keep books for library
+def add_book(library, book):
+    library.append(book)
+    
+def remove_book(library, book):
+    if book in library:
+        library.remove(book)
+        
+def display_books(library):
+    for i, book in enumerate(library, start=1):
+        print(f"{i:>3}. {book}")
+
+library1 = []
+add_book(library1, "Harry Porter and the Goblet of Fire")
+add_book(library1, "Harry Porter and the Deathly Hallows")
+add_book(library1, "Fantastic Beasts and Where to Find Them")
+display_books(library1)
+remove_book(library1, "Fantastic Beasts and Where to Find Them")
+display_books(library1)
+
+library2 = []
+add_book(library2, "Book 1")
+add_book(library2, "Book 2")
+display_books(library2)
+
+#%% Use OOP approach
+class Library:
+    def __init__(self):
+        self.books = []
+        
+    def add_book(self, book):
+        self.books.append(book)
+    
+    def remove_book(self, book):
+        if book in self.books:
+            self.books.remove(book)
+            
+    def display_books(self):
+        for i, book in enumerate(self.books, start=1):
+            print(f"{i:>3}. {book}")
+
+    def __str__(self):
+        return f"This is a library with {len(self.books)} books."
+
+library1 = Library()
+library1.add_book("Introduction to Python")
+library1.add_book("Machine Learning with Python")
+library1.add_book("Deep Learning Fundamentals")
+library1.display_books()
+print(library1)
+
+#%% OOP Example
+class Rectangle:
+    desc = "This is a rectangle"
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+        self.__secret = "This is private"
+    def __str__(self):
+        return f"A {self.length} x {self.width} rectangle"
+    def __repr__(self):
+        return f"Rectangle({self.length}, {self.width})"
+    def __gt__(self, other):
+        return self.area() > other.area()
+    def __eq__(self, other):
+        return self.area() == other.area()
+    def area(self):
+        return self.length * self.width
+    def perimeter(self):
+        return 2*self.length + 2*self.width
+    def disclose_secret(self):
+        return self.__secret
+    
+
+r1 = Rectangle(2, 3)
+r2 = Rectangle(3, 2)
+r3 = Rectangle(4, 5)
+print(f"{r1}, {r1.area()}, {r1.perimeter()}")
+
+rlist = [r1, r2, r3]
+print(rlist)
+
+for r in rlist:
+    print(f"{r}, {r.area()}, {r.perimeter()}")
+
+if r1 > r3:
+    print(f"{r1} is larger than {r3}")
+else:
+    print(f"{r1} is smaller than {r3}")
+
+if r1 < r3:
+    print(f"{r1} is smaller than {r3}")
+else:
+    print(f"{r1} is larger than {r3}")
+    
+if r1 == r2:
+    print(f"{r1} is the same as {r2}")
+else:
+    print(f"{r1} is not the same as {r2}")
+        
+print(f"{r1.length = }")
+print(f"{r1.disclose_secret() = }")
+
+
+# Child class
+class Square(Rectangle):
+    def __init__(self, length):
+        super().__init__(length, length)
+    def __str__(self):
+        return f"A {self.length} x {self.width} square"
+    def __repr__(self):
+        return f"Square({self.length})"
+
+s1 = Square(5)
+s2 = Square(6)
+
+print(s1, s2, sep="\n")
+
+print(f"{s1}, {s1.area()}, {s1.perimeter()}")
+
+if s1 > s2:
+    print(f"{s1} is larger than {s2}")
+else:
+    print(f"{s1} is smaller than {s2}")
 
 
 
